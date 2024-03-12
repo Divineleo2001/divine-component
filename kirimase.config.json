@@ -1,19 +1,19 @@
 {
   "hasSrc": false,
   "packages": [
-    "shadcn-ui",
     "drizzle",
+    "trpc",
     "lucia",
-    "trpc"
+    "shadcn-ui"
   ],
   "preferredPackageManager": "pnpm",
   "t3": false,
   "alias": "@",
   "analytics": true,
   "rootPath": "",
-  "componentLib": "shadcn-ui",
-  "driver": "mysql",
-  "provider": "mysql-2",
   "orm": "drizzle",
-  "auth": "lucia"
+  "auth": "lucia",
+  "componentLib": "shadcn-ui",
+  "provider": "mysql-2",
+  "driver": "mysql"
 }

@@ -188,7 +188,7 @@ const CommentForm = ({
           <SelectContent>
           {patients?.map((patient) => (
             <SelectItem key={patient.id} value={patient.id.toString()}>
-              {patient.id}{/* TODO: Replace with a field from the patient model */}
+              {patient.name}{/* TODO: Replace with a field from the patient model */}
             </SelectItem>
            ))}
           </SelectContent>

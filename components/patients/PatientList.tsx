@@ -36,12 +36,20 @@ export default function PatientList({
 
   return (
     <div>
+
+      <pre
+      className="bg-secondary p-4 rounded-lg break-all text-wrap"
+      >
+
+
+      {JSON.stringify(patients, null, 2)}
+      </pre>
       <Modal
         open={open}
         setOpen={setOpen}
         title={activePatient ? "Edit Patient" : "Create Patient"}
       >
-        hello1
+        hello this is a model being opened while edit
         <PatientForm
           patient={activePatient}
           addOptimistic={addOptimisticPatient}
@@ -93,11 +101,14 @@ const Patient = ({
       className={cn(
         "flex justify-between my-2",
         mutating ? "opacity-30 animate-pulse" : "",
-        deleting ? "text-destructive" : "",
+        deleting ? "text-destructive" : ""
       )}
     >
       <div className="w-full">
+     
+        
         <div>{patient.name}</div>
+        <div>{patient.age}</div>
       </div>
       <Button variant={"link"} asChild>
         <Link href={ basePath + "/" + patient.id }>
