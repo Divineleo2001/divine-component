@@ -1,0 +1,1 @@
+ALTER TABLE `comments` MODIFY COLUMN `comment_id` int AUTO_INCREMENT;
