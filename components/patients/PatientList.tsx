@@ -82,9 +82,8 @@ const Patient = ({
   const deleting = patient.id === "delete";
   const mutating = optimistic || deleting;
   const pathname = usePathname();
-  const basePath = pathname.includes("patients")
-    ? pathname
-    : pathname + "/patients/";
+  const basePath = 
+  pathname.includes("patients") ? pathname : pathname + "/patients/";
 
 
   return (

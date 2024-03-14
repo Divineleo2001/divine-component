@@ -16,10 +16,12 @@ import { PlusIcon } from "lucide-react";
 type TOpenModal = (patientComorbidity?: PatientComorbidity) => void;
 
 export default function PatientComorbidityList({
+  comorbidities,
   patientComorbidities,
   patients,
   patientId 
 }: {
+  comorbidities: any;
   patientComorbidities: CompletePatientComorbidity[];
   patients: Patient[];
   patientId?: PatientId 
@@ -43,7 +45,9 @@ export default function PatientComorbidityList({
         setOpen={setOpen}
         title={activePatientComorbidity ? "Edit PatientComorbidity" : "Create Patient Comorbidity"}
       >
+
         <PatientComorbidityForm
+        comorbidities={comorbidities}
           patientComorbidity={activePatientComorbidity}
           addOptimistic={addOptimisticPatientComorbidity}
           openModal={openModal}

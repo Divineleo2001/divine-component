@@ -5,6 +5,7 @@ import PatientComorbidityList from "@/components/patientComorbidities/PatientCom
 import { getPatientComorbidities } from "@/lib/api/patientComorbidities/queries";
 import { getPatients } from "@/lib/api/patients/queries";
 import { checkAuth } from "@/lib/auth/utils";
+import { getComorbidities } from "@/lib/api/comorbidities/queries";
 
 export const revalidate = 0;
 
@@ -26,9 +27,10 @@ const PatientComorbidities = async () => {
 
   const { patientComorbidities } = await getPatientComorbidities();
   const { patients } = await getPatients();
+  const {comorbidities } = await getComorbidities();
   return (
     <Suspense fallback={<Loading />}>
-      <PatientComorbidityList patientComorbidities={patientComorbidities} patients={patients} />
+      <PatientComorbidityList patientComorbidities={patientComorbidities} patients={patients} comorbidities={comorbidities} />
     </Suspense>
   );
 };

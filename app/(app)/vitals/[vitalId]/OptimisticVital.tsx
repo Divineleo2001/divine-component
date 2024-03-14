@@ -16,7 +16,6 @@ export default function OptimisticVital({
   patientId 
 }: { 
   vital: Vital; 
-  
   patients: Patient[];
   patientId?: PatientId
 }) {
