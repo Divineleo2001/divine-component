@@ -8,6 +8,7 @@ import { checkAuth } from "@/lib/auth/utils";
 
 import { BackButton } from "@/components/shared/BackButton";
 import Loading from "@/app/loading";
+import { getComorbidities } from "@/lib/api/comorbidities/queries";
 
 
 export const revalidate = 0;
@@ -30,13 +31,16 @@ const PatientComorbidity = async ({ id }: { id: string }) => {
 
   const { patientComorbidity } = await getPatientComorbidityById(id);
   const { patients } = await getPatients();
+  const {comorbidities} = await getComorbidities();
+
+  console.log(comorbidities)
 
   if (!patientComorbidity) notFound();
   return (
     <Suspense fallback={<Loading />}>
       <div className="relative">
         <BackButton currentResource="patient-comorbidities" />
-        <OptimisticPatientComorbidity patientComorbidity={patientComorbidity} patients={patients} />
+        <OptimisticPatientComorbidity patientComorbidity={patientComorbidity} patients={patients} comorbidities={comorbidities}/>
       </div>
     </Suspense>
   );

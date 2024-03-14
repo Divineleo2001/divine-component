@@ -9,40 +9,48 @@ import { Button } from "@/components/ui/button";
 import Modal from "@/components/shared/Modal";
 import PatientComorbidityForm from "@/components/patientComorbidities/PatientComorbidityForm";
 import { type Patient, type PatientId } from "@/lib/db/schema/patients";
+import { Comorbidity } from "@/lib/db/schema/comorbidities";
 
-export default function OptimisticPatientComorbidity({ 
+export default function OptimisticPatientComorbidity({
+  comorbidities,
   patientComorbidity,
   patients,
-  patientId 
-}: { 
-  patientComorbidity: PatientComorbidity; 
-  
+  patientId,
+}: {
+  patientComorbidity: PatientComorbidity;
+  comorbidities: any
   patients: Patient[];
-  patientId?: PatientId
+  patientId?: PatientId;
 }) {
+  console.log(comorbidities)
   const [open, setOpen] = useState(false);
   const openModal = (_?: PatientComorbidity) => {
     setOpen(true);
   };
   const closeModal = () => setOpen(false);
-  const [optimisticPatientComorbidity, setOptimisticPatientComorbidity] = useOptimistic(patientComorbidity);
+  const [optimisticPatientComorbidity, setOptimisticPatientComorbidity] =
+    useOptimistic(patientComorbidity);
   const updatePatientComorbidity: TAddOptimistic = (input) =>
     setOptimisticPatientComorbidity({ ...input.data });
 
   return (
     <div className="m-4">
       <Modal open={open} setOpen={setOpen}>
+        hello
         <PatientComorbidityForm
+          comorbidities={comorbidities}
           patientComorbidity={optimisticPatientComorbidity}
           patients={patients}
-        patientId={patientId}
+          patientId={patientId}
           closeModal={closeModal}
           openModal={openModal}
           addOptimistic={updatePatientComorbidity}
         />
       </Modal>
       <div className="flex justify-between items-end mb-4">
-        <h1 className="font-semibold text-2xl">{optimisticPatientComorbidity.comorbidityName}</h1>
+        <h1 className="font-semibold text-2xl">
+          {optimisticPatientComorbidity.comorbidityName}
+        </h1>
         <Button className="" onClick={() => setOpen(true)}>
           Edit
         </Button>
@@ -50,9 +58,12 @@ export default function OptimisticPatientComorbidity({
       <pre
         className={cn(
           "bg-secondary p-4 rounded-lg break-all text-wrap",
-          optimisticPatientComorbidity.id === "optimistic" ? "animate-pulse" : "",
+          optimisticPatientComorbidity.id === "optimistic"
+            ? "animate-pulse"
+            : ""
         )}
       >
+     
         {JSON.stringify(optimisticPatientComorbidity, null, 2)}
       </pre>
     </div>

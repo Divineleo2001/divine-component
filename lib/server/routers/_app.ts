@@ -6,6 +6,8 @@ import { commentsRouter } from "./comments";
 import { historiesRouter } from "./histories";
 import { patientComorbiditiesRouter } from "./patientComorbidities";
 import { patientDisabilitiesRouter } from "./patientDisabilities";
+import { comorbiditiesRouter } from "./comorbidities";
+import { disabilitiesRouter } from "./disabilities";
 
 export const appRouter = router({
   computers: computersRouter,
@@ -15,6 +17,8 @@ export const appRouter = router({
   histories: historiesRouter,
   patientComorbidities: patientComorbiditiesRouter,
   patientDisabilities: patientDisabilitiesRouter,
+  comorbidities: comorbiditiesRouter,
+  disabilities: disabilitiesRouter,
 });
 
 export type AppRouter = typeof appRouter;

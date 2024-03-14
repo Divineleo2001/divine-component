@@ -12,14 +12,17 @@ import { useOptimisticPatientComorbidities } from "@/app/(app)/patient-comorbidi
 import { Button } from "@/components/ui/button";
 import PatientComorbidityForm from "./PatientComorbidityForm";
 import { PlusIcon } from "lucide-react";
+import { type Comorbidity } from "@/lib/db/schema/comorbidities";
 
 type TOpenModal = (patientComorbidity?: PatientComorbidity) => void;
 
 export default function PatientComorbidityList({
+  comorbidities,
   patientComorbidities,
   patients,
   patientId 
 }: {
+  comorbidities: Comorbidity[];
   patientComorbidities: CompletePatientComorbidity[];
   patients: Patient[];
   patientId?: PatientId 
@@ -44,6 +47,7 @@ export default function PatientComorbidityList({
         title={activePatientComorbidity ? "Edit PatientComorbidity" : "Create Patient Comorbidity"}
       >
         <PatientComorbidityForm
+        comorbidities={comorbidities}
           patientComorbidity={activePatientComorbidity}
           addOptimistic={addOptimisticPatientComorbidity}
           openModal={openModal}

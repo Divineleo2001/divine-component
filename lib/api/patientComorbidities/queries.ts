@@ -3,10 +3,11 @@ import { eq, and } from "drizzle-orm";
 import { getUserAuth } from "@/lib/auth/utils";
 import { type PatientComorbidityId, patientComorbidityIdSchema, patientComorbidities } from "@/lib/db/schema/patientComorbidities";
 import { patients } from "@/lib/db/schema/patients";
+import { comorbidities } from "@/lib/db/schema/comorbidities";
 
 export const getPatientComorbidities = async () => {
   const { session } = await getUserAuth();
-  const rows = await db.select({ patientComorbidity: patientComorbidities, patient: patients }).from(patientComorbidities).leftJoin(patients, eq(patientComorbidities.patientId, patients.id)).where(eq(patientComorbidities.userId, session?.user.id!));
+  const rows = await db.select({ patientComorbidity: patientComorbidities, patient: patients}).from(patientComorbidities).leftJoin(patients, eq(patientComorbidities.patientId, patients.id)).where(eq(patientComorbidities.userId, session?.user.id!));
   const p = rows .map((r) => ({ ...r.patientComorbidity, patient: r.patient})); 
   return { patientComorbidities: p };
 };
